@@ -8,6 +8,11 @@ const bottomContainerColor = Color(0xffEB1555);
 const activeCardColor = Color(0xff1D1E33);
 const inactiveCardColor = Color(0xff111328);
 
+enum Gender {
+  male,
+  female,
+}
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -16,26 +21,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
-  void updateColor(int gender) {
-    if (gender == 1) {
-      if (maleCardColor == inactiveCardColor) {
-        maleCardColor = activeCardColor;
-        femaleCardColor = inactiveCardColor;
-      } else {
-        maleCardColor = inactiveCardColor;
-      }
-    }
-    if (gender == 2) {
-      if (femaleCardColor == inactiveCardColor) {
-        femaleCardColor = activeCardColor;
-        maleCardColor = inactiveCardColor;
-      } else {
-        femaleCardColor = inactiveCardColor;
-      }
-    }
-  }
+  Gender? selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -51,31 +37,31 @@ class _HomeState extends State<Home> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ContainerWidget(
+                    onPresseds: () {
                       setState(() {
-                        updateColor(1);
+                        selectedGender = Gender.male;
                       });
                     },
-                    child: ContainerWidget(
-                      myColor: maleCardColor,
-                      containerChild: ContainerContentWidget(
-                          icon: FontAwesomeIcons.mars, label: "Male"),
-                    ),
+                    myColor: selectedGender == Gender.male
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    containerChild: ContainerContentWidget(
+                        icon: FontAwesomeIcons.mars, label: "Male"),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ContainerWidget(
+                    onPresseds: () {
                       setState(() {
-                        updateColor(2);
+                        selectedGender = Gender.female;
                       });
                     },
-                    child: ContainerWidget(
-                      myColor: femaleCardColor,
-                      containerChild: ContainerContentWidget(
-                          icon: FontAwesomeIcons.venus, label: "Female"),
-                    ),
+                    myColor: selectedGender == Gender.female
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    containerChild: ContainerContentWidget(
+                        icon: FontAwesomeIcons.venus, label: "Female"),
                   ),
                 ),
               ],
@@ -86,6 +72,9 @@ class _HomeState extends State<Home> {
               children: [
                 Expanded(
                   child: ContainerWidget(
+                    onPresseds: () {
+                      setState(() {});
+                    },
                     myColor: activeCardColor,
                     containerChild: Column(
                       children: const [
@@ -113,6 +102,9 @@ class _HomeState extends State<Home> {
               children: [
                 Expanded(
                   child: ContainerWidget(
+                    onPresseds: () {
+                      setState(() {});
+                    },
                     myColor: activeCardColor,
                     containerChild: Column(
                       children: const [
@@ -134,6 +126,9 @@ class _HomeState extends State<Home> {
                 ),
                 Expanded(
                   child: ContainerWidget(
+                    onPresseds: () {
+                      setState(() {});
+                    },
                     myColor: activeCardColor,
                     containerChild: Column(
                       children: const [
@@ -160,7 +155,7 @@ class _HomeState extends State<Home> {
             height: bottomContainerHeight,
             width: double.infinity,
             color: bottomContainerColor,
-            margin: EdgeInsets.only(top: 10),
+            margin: const EdgeInsets.only(top: 10),
           ),
         ],
       ),

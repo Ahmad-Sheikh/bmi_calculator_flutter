@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 
 class ContainerWidget extends StatelessWidget {
-  const ContainerWidget({required this.myColor, required this.containerChild});
+  ContainerWidget(
+      {required this.myColor,
+      required this.containerChild,
+      required this.onPresseds});
   final Color myColor;
   final Widget containerChild;
+  final VoidCallback? onPresseds;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: myColor,
+    return GestureDetector(
+      onTap: onPresseds,
+      child: Container(
+        margin: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: myColor,
+        ),
+        child: containerChild,
       ),
-      child: containerChild,
     );
   }
 }
