@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'container_widget.dart';
 import 'container_content_widget.dart';
-
-const bottomContainerHeight = 80.0;
-const bottomContainerColor = Color(0xffEB1555);
-const activeCardColor = Color(0xff1D1E33);
-const inactiveCardColor = Color(0xff111328);
+import 'constant.dart';
 
 enum Gender {
   male,
@@ -44,10 +40,12 @@ class _HomeState extends State<Home> {
                       });
                     },
                     myColor: selectedGender == Gender.male
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     containerChild: ContainerContentWidget(
-                        icon: FontAwesomeIcons.mars, label: "Male"),
+                      icon: FontAwesomeIcons.mars,
+                      label: "Male",
+                    ),
                   ),
                 ),
                 Expanded(
@@ -58,8 +56,8 @@ class _HomeState extends State<Home> {
                       });
                     },
                     myColor: selectedGender == Gender.female
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     containerChild: ContainerContentWidget(
                         icon: FontAwesomeIcons.venus, label: "Female"),
                   ),
@@ -75,7 +73,7 @@ class _HomeState extends State<Home> {
                     onPresseds: () {
                       setState(() {});
                     },
-                    myColor: activeCardColor,
+                    myColor: kActiveCardColor,
                     containerChild: Column(
                       children: const [
                         Icon(FontAwesomeIcons.mars),
@@ -83,12 +81,8 @@ class _HomeState extends State<Home> {
                           height: 15,
                         ),
                         Text(
-                          'Male',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                            color: textColor,
-                          ),
+                          'Height',
+                          style: kLabelTextStyle,
                         )
                       ],
                     ),
@@ -105,7 +99,7 @@ class _HomeState extends State<Home> {
                     onPresseds: () {
                       setState(() {});
                     },
-                    myColor: activeCardColor,
+                    myColor: kActiveCardColor,
                     containerChild: Column(
                       children: const [
                         Icon(FontAwesomeIcons.mars),
@@ -129,7 +123,7 @@ class _HomeState extends State<Home> {
                     onPresseds: () {
                       setState(() {});
                     },
-                    myColor: activeCardColor,
+                    myColor: kActiveCardColor,
                     containerChild: Column(
                       children: const [
                         Icon(FontAwesomeIcons.mars),
@@ -152,9 +146,9 @@ class _HomeState extends State<Home> {
             ),
           ),
           Container(
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
             width: double.infinity,
-            color: bottomContainerColor,
+            color: kBottomContainerColor,
             margin: const EdgeInsets.only(top: 10),
           ),
         ],
