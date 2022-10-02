@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/roundicon_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'container_widget.dart';
@@ -5,6 +6,8 @@ import 'container_content_widget.dart';
 import 'constant.dart';
 
 int heights = 180;
+int weights = 65;
+int ages = 20;
 
 enum Gender {
   male,
@@ -138,12 +141,34 @@ class _HomeState extends State<Home> {
                     },
                     myColor: kActiveCardColor,
                     containerChild: Column(
-                      children: const [
-                        Icon(FontAwesomeIcons.mars),
-                        SizedBox(
-                          height: 15,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Weight', style: kLabelTextStyle),
+                        Text(weights.toString(), style: kNumberTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPresseds: () {
+                                setState(() {
+                                  weights--;
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPresseds: () {
+                                setState(() {
+                                  weights++;
+                                });
+                              },
+                            ),
+                          ],
                         ),
-                        Text('Male', style: kLabelTextStyle)
                       ],
                     ),
                   ),
@@ -155,12 +180,34 @@ class _HomeState extends State<Home> {
                     },
                     myColor: kActiveCardColor,
                     containerChild: Column(
-                      children: const [
-                        Icon(FontAwesomeIcons.mars),
-                        SizedBox(
-                          height: 15,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Age', style: kLabelTextStyle),
+                        Text(ages.toString(), style: kNumberTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPresseds: () {
+                                setState(() {
+                                  ages--;
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPresseds: () {
+                                setState(() {
+                                  ages++;
+                                });
+                              },
+                            ),
+                          ],
                         ),
-                        Text('Male', style: kLabelTextStyle)
                       ],
                     ),
                   ),
@@ -171,8 +218,24 @@ class _HomeState extends State<Home> {
           Container(
             height: kBottomContainerHeight,
             width: double.infinity,
-            color: kBottomContainerColor,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30),
+              ),
+              color: kBottomContainerColor,
+            ),
             margin: const EdgeInsets.only(top: 10),
+            child: const Center(
+              child: Text(
+                "Calculate BMI",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ),
         ],
       ),
