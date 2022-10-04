@@ -3,14 +3,14 @@ import 'constant.dart';
 import '../components/container_widget.dart';
 import '../components/bottom_button_widget.dart';
 
-class ResultScreen extends StatefulWidget {
-  const ResultScreen({Key? key}) : super(key: key);
-
-  @override
-  State<ResultScreen> createState() => _ResultScreenState();
-}
-
-class _ResultScreenState extends State<ResultScreen> {
+class ResultScreen extends StatelessWidget {
+  ResultScreen(
+      {required this.bmiResult,
+      required this.resultText,
+      required this.resultComment});
+  final String bmiResult;
+  final String resultText;
+  final String resultComment;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,17 +41,17 @@ class _ResultScreenState extends State<ResultScreen> {
               containerChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
-                    "Normal",
+                    resultText.toUpperCase(),
                     style: kResultTextStyle,
                   ),
                   Text(
-                    "18.3",
+                    bmiResult,
                     style: kBMITextStyle,
                   ),
                   Text(
-                    "Your BMI result is quite low you should eat more and healthy food",
+                    resultComment,
                     textAlign: TextAlign.center,
                     style: kBodyTextStyle,
                   ),

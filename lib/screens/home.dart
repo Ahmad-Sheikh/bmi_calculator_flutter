@@ -6,6 +6,7 @@ import '../components/container_widget.dart';
 import '../components/container_content_widget.dart';
 import 'constant.dart';
 import '../components/bottom_button_widget.dart';
+import 'package:bmi_calculator/calculate_bmi.dart';
 
 int heights = 180;
 int weights = 65;
@@ -220,8 +221,15 @@ class _HomeState extends State<Home> {
           BottomButton(
             buttonTitle: "Calculate",
             onTaps: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ResultScreen()));
+              CalculateBMI cal = CalculateBMI(height: heights, weight: weights);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ResultScreen(
+                            bmiResult: cal.calculate(),
+                            resultText: cal.getResult(),
+                            resultComment: cal.getResultComment(),
+                          )));
             },
           ),
         ],
