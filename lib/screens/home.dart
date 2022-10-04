@@ -1,9 +1,11 @@
-import 'package:bmi_calculator/roundicon_button_widget.dart';
+import 'package:bmi_calculator/screens/result_screen.dart';
+import 'package:bmi_calculator/components/roundicon_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'container_widget.dart';
-import 'container_content_widget.dart';
+import '../components/container_widget.dart';
+import '../components/container_content_widget.dart';
 import 'constant.dart';
+import '../components/bottom_button_widget.dart';
 
 int heights = 180;
 int weights = 65;
@@ -82,7 +84,7 @@ class _HomeState extends State<Home> {
                     containerChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Height',
                           style: kLabelTextStyle,
                         ),
@@ -95,7 +97,7 @@ class _HomeState extends State<Home> {
                               heights.toString(),
                               style: kNumberTextStyle,
                             ),
-                            Text(
+                            const Text(
                               "cm",
                               style: kLabelTextStyle,
                             )
@@ -104,13 +106,13 @@ class _HomeState extends State<Home> {
                         SliderTheme(
                           data: SliderTheme.of(context).copyWith(
                             activeTrackColor: Colors.white,
-                            inactiveTrackColor: Color(0xff8D8E98),
-                            thumbColor: Color(0xffEB1555),
-                            overlayColor: Color(0x29EB1555),
-                            thumbShape: RoundSliderThumbShape(
+                            inactiveTrackColor: const Color(0xff8D8E98),
+                            thumbColor: const Color(0xffEB1555),
+                            overlayColor: const Color(0x29EB1555),
+                            thumbShape: const RoundSliderThumbShape(
                               enabledThumbRadius: 15.0,
                             ),
-                            overlayShape: RoundSliderOverlayShape(
+                            overlayShape: const RoundSliderOverlayShape(
                               overlayRadius: 30.0,
                             ),
                           ),
@@ -143,7 +145,7 @@ class _HomeState extends State<Home> {
                     containerChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Weight', style: kLabelTextStyle),
+                        const Text('Weight', style: kLabelTextStyle),
                         Text(weights.toString(), style: kNumberTextStyle),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -182,7 +184,7 @@ class _HomeState extends State<Home> {
                     containerChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Age', style: kLabelTextStyle),
+                        const Text('Age', style: kLabelTextStyle),
                         Text(ages.toString(), style: kNumberTextStyle),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -215,27 +217,12 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          Container(
-            height: kBottomContainerHeight,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30),
-                topLeft: Radius.circular(30),
-              ),
-              color: kBottomContainerColor,
-            ),
-            margin: const EdgeInsets.only(top: 10),
-            child: const Center(
-              child: Text(
-                "Calculate BMI",
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+          BottomButton(
+            buttonTitle: "Calculate",
+            onTaps: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ResultScreen()));
+            },
           ),
         ],
       ),
